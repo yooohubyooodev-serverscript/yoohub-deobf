@@ -1,0 +1,123 @@
+:root {
+  --bg: #0b0f14;
+  --card: #121821;
+  --border: #1e2a3a;
+  --text: #e7eef8;
+  --muted: #8b9bb0;
+  --accent: #3d8bfd;
+  --accent2: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --radius: 14px;
+  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.bg {
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, #1a3a5c55, transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, #0d3d2a33, transparent),
+    var(--bg);
+}
+
+.top {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--border);
+  background: #0b0f14cc; backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10;
+}
+.brand { display: flex; gap: 12px; align-items: center; }
+.logo { font-size: 1.8rem; }
+.top h1 { margin: 0; font-size: 1.15rem; font-weight: 700; }
+.sub { margin: 0; color: var(--muted); font-size: 0.85rem; }
+nav { display: flex; gap: 14px; }
+nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+nav a:hover { color: var(--text); }
+
+main { max-width: 900px; margin: 0 auto; padding: 20px 16px 48px; }
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
+}
+.card h2 { margin: 0 0 12px; font-size: 1.1rem; }
+.hero p { color: var(--muted); margin: 0 0 12px; }
+
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  font-size: 0.75rem; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--muted);
+}
+.badge.ok { border-color: #166534; color: #86efac; background: #052e16; }
+.badge.warn { border-color: #854d0e; color: #fde68a; background: #1c1405; }
+
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+.actions { margin-top: 12px; }
+
+textarea#source {
+  width: 100%; min-height: 200px; resize: vertical;
+  background: #0a0e13; color: var(--text); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px; font-family: var(--mono); font-size: 0.85rem;
+}
+textarea#source:focus { outline: 2px solid #3d8bfd55; border-color: var(--accent); }
+
+button, .file-btn {
+  cursor: pointer; border: none; border-radius: 10px;
+  padding: 10px 16px; font-size: 0.9rem; font-weight: 600;
+  font-family: inherit;
+}
+.file-btn {
+  display: inline-block; background: #1e293b; color: var(--text);
+  border: 1px solid var(--border);
+}
+.file-btn input { display: none; }
+button.primary { background: var(--accent); color: #fff; }
+button.accent { background: var(--accent2); color: #052e16; }
+button.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+button:hover:not(:disabled) { filter: brightness(1.08); }
+
+.hint { color: var(--muted); font-size: 0.8rem; margin: 8px 0 0; }
+.hint code { background: #0a0e13; padding: 2px 6px; border-radius: 4px; font-size: 0.85em; }
+
+.status {
+  padding: 10px 14px; border-radius: 10px; margin-bottom: 12px;
+  font-size: 0.9rem; border: 1px solid var(--border);
+}
+.status.idle { color: var(--muted); }
+.status.ok { background: #052e16; border-color: #166534; color: #86efac; }
+.status.err { background: #2a0a0a; border-color: #7f1d1d; color: #fca5a5; }
+.status.run { background: #0c1a2e; border-color: #1e3a5f; color: #93c5fd; }
+
+.result {
+  background: #0a0e13; border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px; max-height: 420px; overflow: auto;
+  font-family: var(--mono); font-size: 0.8rem; white-space: pre-wrap; word-break: break-word;
+  margin: 0 0 12px;
+}
+.result.empty { color: var(--muted); }
+
+.codeblock {
+  background: #0a0e13; border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px; overflow-x: auto; font-family: var(--mono); font-size: 0.8rem;
+  margin: 0; color: #cbd5e1;
+}
+
+footer {
+  text-align: center; padding: 24px; color: var(--muted); font-size: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+  .top { flex-direction: column; align-items: flex-start; }
+  textarea#source { min-height: 160px; }
+}

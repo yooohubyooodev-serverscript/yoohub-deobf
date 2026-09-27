@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Yoohub Deobf by Fox — Luraph v15</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg"></div>
+  <header class="top">
+    <div class="brand">
+      <span class="logo">🦊</span>
+      <div>
+        <h1>Yoohub Deobf by Fox</h1>
+        <p class="sub">เว็บ (Server 1) → Worker Python (Server 2)</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#use">ใช้งาน</a>
+      <a href="#arch">สถาปัตยกรรม</a>
+      <a href="https://github.com/yooohubyooodev-serverscript/dd" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero card">
+      <h2>ถอดรหัส Luraph v15</h2>
+      <p>
+        หน้านี้คุยกับ <strong>Server 1 (เว็บ)</strong> เท่านั้น
+        Server 1 ส่งงานไป <strong>Server 2 (Python worker)</strong>
+        รอ callback ยืนยัน แล้วค่อยโชว์ผล
+      </p>
+      <div class="badges">
+        <span class="badge ok" id="badgeWeb">Server 1: ตรวจอยู่...</span>
+        <span class="badge warn" id="badgeWorker">Worker: ยังไม่รู้</span>
+      </div>
+    </section>
+
+    <section id="use" class="card">
+      <h2>1) วางโค้ด / อัปโหลด</h2>
+      <div class="row">
+        <label class="file-btn">
+          เลือกไฟล์ .lua / .luau
+          <input type="file" id="fileInput" accept=".lua,.luau,.txt,text/plain" />
+        </label>
+        <button type="button" id="btnClear" class="ghost">ล้าง</button>
+      </div>
+      <textarea id="source" placeholder="วางโค้ด Luraph..." spellcheck="false"></textarea>
+      <div class="row actions">
+        <button type="button" id="btnDetect" class="primary">ตรวจจับ (เบราว์เซอร์)</button>
+        <button type="button" id="btnSubmit" class="accent">ส่งถอดรหัส (ผ่าน Server 1→2)</button>
+        <label style="display:flex;align-items:center;gap:6px;color:#8b9bb0;font-size:0.85rem;">
+          <input type="checkbox" id="fastMode" checked /> โหมดเร็ว (--no-devirt)
+        </label>
+      </div>
+      <p class="hint">API ถูกตั้งจาก Environment บน server อัตโนมัติ — ไม่ต้องใส่ URL เอง</p>
+    </section>
+
+    <section class="card">
+      <h2>2) ผลลัพธ์</h2>
+      <div id="status" class="status idle">ยังไม่ได้รัน</div>
+      <pre id="result" class="result empty">—</pre>
+      <div class="row">
+        <button type="button" id="btnCopy" class="ghost" disabled>คัดลอก</button>
+        <button type="button" id="btnDownload" class="ghost" disabled>ดาวน์โหลด .lua</button>
+      </div>
+    </section>
+
+    <section id="arch" class="card">
+      <h2>สถาปัตยกรรม 2 Server</h2>
+      <pre class="codeblock">คุณ → Server 1 (เว็บ Node นี้)
+         → สร้าง job + ส่งไป Server 2 (Python worker)
+              → ถอดรหัส
+              → callback กลับ Server 1
+         → Server 1 ตรวจ secret / ยืนยัน
+         → คุณโพล GET /api/job/:id ได้ผล</pre>
+    </section>
+  </main>
+  <footer><p>Yoohub · Gateway + Worker</p></footer>
+  <script src="app.js"></script>
+</body>
+</html>

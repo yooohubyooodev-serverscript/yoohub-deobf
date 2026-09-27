@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: yoohub-deobf-web
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: WORKER_URL
+        sync: false
+      - key: PUBLIC_URL
+        sync: false
+      - key: SHARED_SECRET
+        sync: false
